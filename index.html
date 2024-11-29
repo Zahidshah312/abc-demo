@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+</head>
+<body>
+  <input type="number" name="first" id="first" placeholder="Enter first number" step="any">
+  <select id="ope">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="x">x</option>
+    <option value="/">/</option>
+  </select>
+  <input type="number" name="secound" id="secound" placeholder="Enter second number" step="any">
+  <br>
+  
+  <button id="calculate">Calculate</button>
+  <input type="text" id="res" readonly placeholder="Result">
+
+  <script>
+    document.getElementById('calculate').addEventListener('click', function() {
+      const first = parseFloat(document.getElementById('first').value);
+      const second = parseFloat(document.getElementById('secound').value);
+      const operator = document.getElementById('ope').value;
+      let result;
+
+      if (isNaN(first) || isNaN(second)) {
+        alert("Please enter valid numbers!");
+        return;
+      }
+
+      switch (operator) {
+        case '+':
+          result = first + second;
+          break;
+        case '-':
+          result = first - second;
+          break;
+        case 'x':
+          result = first * second;
+          break;
+        case '/':
+          if (second === 0) {
+            alert("Cannot divide by zero!");
+            return;
+          }
+          result = first / second;
+          break;
+        default:
+          alert("Invalid operator selected!");
+          return;
+      }
+
+      document.getElementById('res').value = result;
+    });
+  </script>
+</body>
+</html>
